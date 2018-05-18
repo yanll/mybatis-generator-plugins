@@ -27,6 +27,7 @@ import java.util.List;
  */
 public class MapperPlugin extends PluginAdapter {
 
+    @Override
     public boolean validate(List<String> list) {
         System.out.println("[INFO] MapperPlugin开始生成Mapper文件...");
         return true;

@@ -15,6 +15,8 @@ import java.util.List;
  * 生成VO
  */
 public class VOPlugin extends PluginAdapter {
+
+    @Override
     public boolean validate(List<String> list) {
         System.out.println("[INFO] MapperPlugin开始生成VO文件...");
         return true;
@@ -45,7 +47,7 @@ public class VOPlugin extends PluginAdapter {
             newModel.setVisibility(JavaVisibility.PUBLIC);
             //VO默认都增加VoEntity继承
             newModel.setSuperClass("VOEntity");
-            newModel.addImportedType("com.yanll.framework.data.domain.VOEntity");
+            newModel.addImportedType("com.yanll.framework.facade.domain.VOEntity");
             List<Field> fields = original.getFields();
             if (fields != null) {
                 for (Field field : fields) {
