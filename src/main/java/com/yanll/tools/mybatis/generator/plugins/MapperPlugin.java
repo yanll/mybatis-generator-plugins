@@ -18,7 +18,6 @@ import java.util.List;
  * 基于Mybatis-generator的扩展插件，用于生成Mapper.java、Entity.java、Mapper.xml。
  * 自动生成的代码和手写的代码应该分开文件存放。
  * <p>
- * 鉴于现有开发框架framework-core项目已经针对数据库增删改做了抽象（findById、modify等等），故Mapper.java无需额外生成，直接调用现有即可。
  * <p>
  * <p>
  * 代码生成原则：
@@ -46,8 +45,8 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine("* " + "table:" + tableName);
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
-        topLevelClass.setSuperClass("DataEntity");
-        topLevelClass.addImportedType("com.yanll.framework.data.domain.DataEntity");
+        topLevelClass.setSuperClass("POEntity");
+        topLevelClass.addImportedType("com.yanll.framework.data.domain.POEntity");
 
         //增加serialVersionUID
         topLevelClass.addField(PluginUtil.getSerialVersionUIDField());
@@ -94,8 +93,6 @@ public class MapperPlugin extends PluginAdapter {
                 break;
             }
         }
-        //生成二级缓存Cache
-        parentElement.addElement(0, new TextElement("<cache-ref namespace=\"" + namespace + "\"/>"));
         parentElement.addElement(0, new TextElement("<!--" + PluginUtil.WARN + "-->"));
         //增加deleteByIds接口的sql元素
         String tableName = introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime();//数据库表名

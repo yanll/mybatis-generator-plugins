@@ -12,13 +12,12 @@ import java.util.List;
 
 /**
  * Created by YANLL on 2016/11/4.
- * 生成VO
  */
-public class VOPlugin extends PluginAdapter {
+public class DTOPlugin extends PluginAdapter {
 
     @Override
     public boolean validate(List<String> list) {
-        System.out.println("[INFO] MapperPlugin开始生成VO文件...");
+        System.out.println("[INFO] MapperPlugin开始生成DTO文件...");
         return true;
     }
 
@@ -34,10 +33,10 @@ public class VOPlugin extends PluginAdapter {
             String targetProject = file.getTargetProject();
             if (compilationUnit.isJavaInterface()) continue;
             TopLevelClass original = (TopLevelClass) compilationUnit;
-            String baseRecordType = introspectedTable.getBaseRecordType() + "VO";
+            String baseRecordType = introspectedTable.getBaseRecordType() + "DTO";
             TopLevelClass newModel = new TopLevelClass(baseRecordType);
             newModel.addJavaDocLine("/*");
-            newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator自动生成的VO，请手动剪切到*-service项目。");
+            newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator生成的DTO，请勿修改。");
             newModel.addJavaDocLine("*/");
             newModel.addImportedTypes(compilationUnit.getImportedTypes());
             newModel.addStaticImports(compilationUnit.getStaticImports());
@@ -45,9 +44,9 @@ public class VOPlugin extends PluginAdapter {
             newModel.setStatic(false);
             newModel.setFinal(false);
             newModel.setVisibility(JavaVisibility.PUBLIC);
-            //VO默认都增加VoEntity继承
-            newModel.setSuperClass("VOEntity");
-            newModel.addImportedType("com.yanll.framework.facade.domain.VOEntity");
+            //DTO默认都增加DTOEntity继承
+            newModel.setSuperClass("DTOEntity");
+            newModel.addImportedType("com.yanll.framework.facade.domain.DTOEntity");
             List<Field> fields = original.getFields();
             if (fields != null) {
                 for (Field field : fields) {
