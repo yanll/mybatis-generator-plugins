@@ -14,7 +14,7 @@
 
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" userId="root" password="root"
-                        connectionURL="jdbc:mysql://docker:3306/AUTH_CENTER?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
+                        connectionURL="jdbc:mysql://docker:3306/auth_center">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
@@ -22,21 +22,24 @@
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
-
         <!--sql xml生成的路径-->
-        <sqlMapGenerator targetPackage="resources/mapper" targetProject="src/main">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--java mapper生成的路径以及package命名空间定义-->
         <!--targetPackage路径对应项目中的dao文件夹，为了和手写的Mapper使用同一个接口，即调用框架的getMapper()-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yanll.auth.service.dao" targetProject="/">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yanll.auth.service.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
         <!-- 需要生存的表，可以配置多个，*ByExample是示例，都配置false -->
         <!-- tableName：表名，domainObjectName：实体名 -->
+        <table tableName="m_system" domainObjectName="SystemBean" selectByExampleQueryId="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableCountByExample="false">
+        </table>
         <table tableName="m_menu" domainObjectName="MenuBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
@@ -45,20 +48,16 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_permission_group" domainObjectName="PermissionGroupBean" selectByExampleQueryId="false"
+        <table tableName="m_role" domainObjectName="RoleBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_permission_group_rel" domainObjectName="PermissionGroupRelBean"
+        <table tableName="m_role_permission_rel" domainObjectName="RolePermissionRelBean"
                selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
         <table tableName="m_user" domainObjectName="UserBean" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
-        <table tableName="m_user_permission_rel" domainObjectName="UserPermissionRelBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>

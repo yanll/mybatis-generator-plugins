@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class DTOPlugin extends PluginAdapter {
 
+
     @Override
     public boolean validate(List<String> list) {
         System.out.println("[INFO] MapperPlugin开始生成DTO文件...");
@@ -38,7 +39,6 @@ public class DTOPlugin extends PluginAdapter {
             newModel.addJavaDocLine("/*");
             newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator生成的DTO，请勿修改。");
             newModel.addJavaDocLine("*/");
-            newModel.addImportedTypes(compilationUnit.getImportedTypes());
             newModel.addStaticImports(compilationUnit.getStaticImports());
             newModel.setAbstract(false);
             newModel.setStatic(false);

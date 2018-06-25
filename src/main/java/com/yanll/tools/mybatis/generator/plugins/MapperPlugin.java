@@ -1,5 +1,6 @@
 package com.yanll.tools.mybatis.generator.plugins;
 
+import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -9,6 +10,7 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.api.dom.xml.*;
 import org.mybatis.generator.config.GeneratedKey;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
@@ -119,6 +121,20 @@ public class MapperPlugin extends PluginAdapter {
     public boolean sqlMapInsertSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         replaceGeneratedKey(element, introspectedTable);
         return super.sqlMapInsertElementGenerated(element, introspectedTable);
+    }
+
+    @Override
+    public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
+        List<GeneratedJavaFile> files = introspectedTable.getGeneratedJavaFiles();
+        if (files == null) return null;
+        String xmlmapperpath = introspectedTable.getMyBatis3XmlMapperPackage();
+        String xmlmappername = introspectedTable.getMyBatis3XmlMapperFileName();
+        String filepath = System.getProperty("user.dir") + "/src/main/resources/" + "/" + xmlmapperpath + "/" + xmlmappername;
+        File f = new File(filepath);
+        System.out.println("delete:" + filepath);
+        System.out.println("do not worry,i will be back again:" + filepath);
+        if (f.exists()) f.delete();
+        return null;
     }
 
     /**
