@@ -37,7 +37,7 @@ public class DTOPlugin extends PluginAdapter {
             String baseRecordType = introspectedTable.getBaseRecordType() + "DTO";
             TopLevelClass newModel = new TopLevelClass(baseRecordType);
             newModel.addJavaDocLine("/*");
-            newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator生成的DTO，请勿修改。");
+            /*newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator生成的DTO，请勿修改。");*/
             newModel.addJavaDocLine("*/");
             newModel.addStaticImports(compilationUnit.getStaticImports());
             newModel.setAbstract(false);

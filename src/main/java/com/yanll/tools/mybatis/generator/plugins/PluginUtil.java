@@ -10,7 +10,7 @@ import java.io.*;
  * Created by Administrator on 2016/11/8.
  */
 public class PluginUtil {
-    static final String WARN = "当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）";
+    static final String WARN = "";/*"当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）";*/
 
     public static Field getSerialVersionUIDField() {
         Field field = new Field();
