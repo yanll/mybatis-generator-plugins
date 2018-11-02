@@ -2,58 +2,64 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
 <!--MybatisGenerator代码生成配置文件，与项目无关联，仅代码生成使用-->
 <generatorConfiguration>
     <context id="DB_Tables" targetRuntime="MyBatis3">
-        <plugin type="com.yanll.tools.mybatis.generator.plugins.MapperPlugin"/>
-        <plugin type="com.yanll.tools.mybatis.generator.plugins.DTOPlugin"/>
+        <plugin type="tk.techforge.tools.mybatis.generator.plugins.MapperPlugin"/>
+        <plugin type="tk.techforge.tools.mybatis.generator.plugins.DTOPlugin"/>
 
-        <commentGenerator>
+        <commentGenerator type="tk.techforge.tools.mybatis.generator.plugins.TableCommentGenerator">
             <property name="suppressDate" value="true"/><!--不生成时间戳注释-->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
         <!--数据库连接信息-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" userId="root" password="root"
-                        connectionURL="jdbc:mysql://docker:3306/auth_center">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="root" password="root"
+                        connectionURL="jdbc:mysql://docker:3306/yuia">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
-        <javaModelGenerator targetPackage="com.yanll.auth.service.domain" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com" targetProject="/apps">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
         <!--sql xml生成的路径-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="/apps">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--java mapper生成的路径以及package命名空间定义-->
         <!--targetPackage路径对应项目中的dao文件夹，为了和手写的Mapper使用同一个接口，即调用框架的getMapper()-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yanll.auth.service.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper"
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
         <!-- 需要生存的表，可以配置多个，*ByExample是示例，都配置false -->
         <!-- tableName：表名，domainObjectName：实体名 -->
-        <table tableName="m_system" domainObjectName="SystemBean" selectByExampleQueryId="false"
+        <table tableName="tbl_menu" domainObjectName="MenuPO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_menu" domainObjectName="MenuBean" selectByExampleQueryId="false"
+        <table tableName="tbl_system" domainObjectName="SystemPO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_permission" domainObjectName="PermissionBean" selectByExampleQueryId="false"
+        <table tableName="tbl_function" domainObjectName="FunctionPO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_role" domainObjectName="RoleBean" selectByExampleQueryId="false"
+        <table tableName="tbl_role" domainObjectName="RolePO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_user" domainObjectName="UserBean" selectByExampleQueryId="false"
+        <table tableName="tbl_user" domainObjectName="UserPO" selectByExampleQueryId="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableCountByExample="false">
+        </table>
+        <table tableName="tbl_department" domainObjectName="DepartmentPO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>

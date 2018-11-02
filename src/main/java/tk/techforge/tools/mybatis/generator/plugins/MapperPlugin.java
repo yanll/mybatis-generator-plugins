@@ -1,10 +1,11 @@
-package com.yanll.tools.mybatis.generator.plugins;
+package tk.techforge.tools.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.Field;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.api.dom.xml.*;
@@ -47,8 +48,8 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine("* " + "table:" + tableName);
         topLevelClass.addJavaDocLine("*/");
         //DO默认都增加DataEntity继承
-        topLevelClass.setSuperClass("POEntity");
-        topLevelClass.addImportedType("com.yanll.framework.data.domain.POEntity");
+        topLevelClass.addSuperInterface(new FullyQualifiedJavaType("Serializable"));
+        topLevelClass.addImportedType(new FullyQualifiedJavaType("java.io.Serializable"));
 
         //增加serialVersionUID
         topLevelClass.addField(PluginUtil.getSerialVersionUIDField());
@@ -59,21 +60,21 @@ public class MapperPlugin extends PluginAdapter {
     @Override
     public boolean modelFieldGenerated(Field field, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("createTime".equals(field.getName()) || "modifyTime".equals(field.getName())) return false;
+        //if ("createTime".equals(field.getName()) || "modifyTime".equals(field.getName())) return false;
         return super.modelFieldGenerated(field, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
     @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("getCreateTime".equals(method.getName()) || "getModifyTime".equals(method.getName())) return false;
+        //if ("getCreateTime".equals(method.getName()) || "getModifyTime".equals(method.getName())) return false;
         return super.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
     @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
         //DataEntity已经存在，此处忽略不生成。
-        if ("setCreateTime".equals(method.getName()) || "setModifyTime".equals(method.getName())) return false;
+        //if ("setCreateTime".equals(method.getName()) || "setModifyTime".equals(method.getName())) return false;
         return super.modelGetterMethodGenerated(method, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
@@ -126,10 +127,11 @@ public class MapperPlugin extends PluginAdapter {
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
         List<GeneratedJavaFile> files = introspectedTable.getGeneratedJavaFiles();
-        if (files == null) return null;
+        if (files == null || files.size() == 0) return null;
+        String proj = files.get(0).getTargetProject();
         String xmlmapperpath = introspectedTable.getMyBatis3XmlMapperPackage();
         String xmlmappername = introspectedTable.getMyBatis3XmlMapperFileName();
-        String filepath = System.getProperty("user.dir") + "/src/main/resources/" + "/" + xmlmapperpath + "/" + xmlmappername;
+        String filepath = proj + "/" + xmlmapperpath + "/" + xmlmappername;
         File f = new File(filepath);
         System.out.println("delete:" + filepath);
         System.out.println("do not worry,i will be back again:" + filepath);

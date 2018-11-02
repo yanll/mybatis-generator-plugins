@@ -1,4 +1,4 @@
-package com.yanll.tools.mybatis.generator.plugins;
+package tk.techforge.tools.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;

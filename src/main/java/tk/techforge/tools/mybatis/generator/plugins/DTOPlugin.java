@@ -1,4 +1,4 @@
-package com.yanll.tools.mybatis.generator.plugins;
+package tk.techforge.tools.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -34,8 +34,8 @@ public class DTOPlugin extends PluginAdapter {
             String targetProject = file.getTargetProject();
             if (compilationUnit.isJavaInterface()) continue;
             TopLevelClass original = (TopLevelClass) compilationUnit;
-            String baseRecordType = introspectedTable.getBaseRecordType() + "DTO";
-            TopLevelClass newModel = new TopLevelClass(baseRecordType);
+            String baseRecordType = introspectedTable.getBaseRecordType();
+            TopLevelClass newModel = new TopLevelClass(baseRecordType.substring(0, baseRecordType.length() - 2) + "DTO");
             newModel.addJavaDocLine("/*");
             /*newModel.addJavaDocLine("* " + "当前文件为MybatisGenerator生成的DTO，请勿修改。");*/
             newModel.addJavaDocLine("*/");
@@ -44,12 +44,19 @@ public class DTOPlugin extends PluginAdapter {
             newModel.setStatic(false);
             newModel.setFinal(false);
             newModel.setVisibility(JavaVisibility.PUBLIC);
+
+
+            //DO默认都增加DataEntity继承
+            newModel.addSuperInterface(new FullyQualifiedJavaType("Serializable"));
+            newModel.addImportedType(new FullyQualifiedJavaType("java.io.Serializable"));
+
             //DTO默认都增加DTOEntity继承
-            newModel.setSuperClass("DTOEntity");
-            newModel.addImportedType("com.yanll.framework.facade.domain.DTOEntity");
+            /*newModel.setSuperClass("DTOEntity");*/
+            /*newModel.addImportedType("com.yanll.framework.facade.domain.DTOEntity");*/
             List<Field> fields = original.getFields();
             if (fields != null) {
                 for (Field field : fields) {
+                    newModel.addImportedType(field.getType());
                     newModel.addField(field);
                 }
             }
