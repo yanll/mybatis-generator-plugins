@@ -107,7 +107,7 @@ public class MapperPlugin extends PluginAdapter {
         sql_xml.append("#{id}");
         sql_xml.append("</foreach>");
         deleteByIdsElement.addElement(new TextElement(sql_xml.toString()));
-        parentElement.addElement(deleteByIdsElement);
+        /*parentElement.addElement(deleteByIdsElement);*/
         return super.sqlMapDocumentGenerated(document, introspectedTable);
     }
 

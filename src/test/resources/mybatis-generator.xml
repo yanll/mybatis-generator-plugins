@@ -10,7 +10,8 @@
         <plugin type="tk.techforge.tools.mybatis.generator.plugins.DTOPlugin"/>
 
         <commentGenerator type="tk.techforge.tools.mybatis.generator.plugins.TableCommentGenerator">
-            <property name="suppressDate" value="true"/><!--不生成时间戳注释-->
+            <!--不生成时间戳注释-->
+            <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
@@ -31,8 +32,7 @@
 
         <!--java mapper生成的路径以及package命名空间定义-->
         <!--targetPackage路径对应项目中的dao文件夹，为了和手写的Mapper使用同一个接口，即调用框架的getMapper()-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper"
-                             targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
