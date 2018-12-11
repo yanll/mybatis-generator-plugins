@@ -51,6 +51,10 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
+        <table tableName="tbl_permission" domainObjectName="PermissionPO" selectByExampleQueryId="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableCountByExample="false">
+        </table>
         <table tableName="tbl_role" domainObjectName="RolePO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
