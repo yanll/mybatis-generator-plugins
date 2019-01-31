@@ -59,9 +59,5 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="tbl_department" domainObjectName="DepartmentPO" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
     </context>
 </generatorConfiguration>
