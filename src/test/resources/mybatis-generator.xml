@@ -16,8 +16,8 @@
         </commentGenerator>
 
         <!--数据库连接信息-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="root" password="root"
-                        connectionURL="jdbc:mysql://10.151.30.192:3306/yuia">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="yuia" password="yuia1234"
+                        connectionURL="jdbc:mysql://10.151.11.224:3316/yuia">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
@@ -39,23 +39,7 @@
 
         <!-- 需要生成的表，可以配置多个，*ByExample是示例，都配置false -->
         <!-- tableName：表名，domainObjectName：实体名 -->
-        <table tableName="tbl_system" domainObjectName="SystemPO" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
-        <table tableName="tbl_menu" domainObjectName="MenuPO" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
-        <table tableName="tbl_function" domainObjectName="FunctionPO" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
-        <table tableName="tbl_role" domainObjectName="RolePO" selectByExampleQueryId="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableCountByExample="false">
-        </table>
-        <table tableName="tbl_user" domainObjectName="UserPO" selectByExampleQueryId="false"
+        <table tableName="tbl_time_rule_whitelist" domainObjectName="TimeRuleWhitelistPO" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
