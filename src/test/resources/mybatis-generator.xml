@@ -16,8 +16,8 @@
         </commentGenerator>
 
         <!--数据库连接信息-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="yuia" password="yuia1234"
-                        connectionURL="jdbc:mysql://10.151.11.224:3316/yuia">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="root" password="root"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/mydb">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
